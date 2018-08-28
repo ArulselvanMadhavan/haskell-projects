@@ -1,0 +1,29 @@
+* Cabal Notes
+** Installation Notes
+   - Use ~Cabal~ over stack
+   - ~Cabal~ on Arch will not run out of the box. Follow the
+     instructions in [[https://wiki.archlinux.org/index.php/Haskell#Static_linking][here]]
+** Dependencies
+   - Cabal has a single package store in each machine.(Similar to python)
+   - Use ~cabal-sandbox~
+     - Each project has a fully isolated package store.
+     - But this builds the project dependencies even if a locally
+       built version is already available in the same machine.
+     - This duplicates builds and takes up filesystem space.
+     - Enter ~nix-style~ local builds.
+     - Nix style builds projects with isolated and cached dependencies.
+     - To access nix style builds, prefix commands with "new".
+     - For example:Format is ~cabal new-<commandname>~
+** Build Types
+   1. Simple
+   2. Custom
+** Cheat Sheet
+   - Update cabal package list.
+   #+BEGIN_SRC bash
+   cabal update
+   #+END_SRC
+   - Useful for launching repl when the ~cabal~ file targets both
+     library and executable.
+   #+BEGIN_SRC 
+   cabal new-repl
+   #+END_SRC
