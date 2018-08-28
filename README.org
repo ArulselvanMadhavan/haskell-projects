@@ -1,0 +1,4 @@
+* Efforts to learn Haskell
+* Resources
+** Cabal
+   - [[https://haskell-at-work.com/episodes/2018-05-13-introduction-to-cabal.html][Introduction to Cabal]]
