@@ -1,2 +1,2 @@
-packages: greeter, greeter-web
+packages: greeter.cabal
 with-compiler: /usr/share/ghc-pristine/bin/ghc

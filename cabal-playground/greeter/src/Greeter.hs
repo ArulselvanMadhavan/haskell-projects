@@ -5,4 +5,3 @@ import Hello
 
 greet :: String -> String
 greet = titlecase . hello
-    

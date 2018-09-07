@@ -27,3 +27,7 @@
    #+BEGIN_SRC 
    cabal new-repl
    #+END_SRC
+   - Cabal test
+   #+BEGIN_SRC 
+   cabal new-test all
+   #+END_SRC

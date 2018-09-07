@@ -1,0 +1,2 @@
+packages: programming-in-haskell-chapter1.cabal
+with-compiler: /usr/share/ghc-pristine/bin/ghc
