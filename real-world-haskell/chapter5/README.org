@@ -1,0 +1,5 @@
+* Working with JSON data
+** Compiling Haskell source
+   - ~.hi~ - an interface file, in which ghc stores information about
+     the names exported from our module in machine readable form.
+   - ~.o~ - an object file, which containts the generated machine code.
