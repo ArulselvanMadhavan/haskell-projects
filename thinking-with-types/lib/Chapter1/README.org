@@ -1,0 +1,33 @@
+* The Algebra behind Types
+** Isomorphisms and Cardinalities
+   #+BEGIN_SRC haskell
+   data Void -- Cardinality - 0
+   data ()   -- Card - 1
+   data Bool = False | True -- Card - 2
+   #+END_SRC
+   - Isomorphism between types s and t is defined as a pair of
+     functions  /to/ and /from/
+     #+BEGIN_SRC haskell
+     to   :: s -> t
+     from :: t -> s
+     #+END_SRC
+   - For types with cardinality /n/, there are /n!/ unique
+     isomorphisms between them.
+   - Isomorphisms between types /s/ and /t/ is a proof that for all
+     intents and purposes, /s/ and /t/ are the same thing.
+** Sum, Product and Exponential Types
+   #+BEGIN_SRC haskell
+   data Deal a b
+     = This a
+     | That b
+     | TheOther Bool -- Card - |a| + |b| + |Bool|
+
+   data MixedFraction a = Fraction
+     { mixedBit :: Word8
+     , numerator :: a
+     , denominator :: a
+     }
+   -- Card - |MixedFraction a| = |Word8| * |a| * |a|
+   #+END_SRC
+   - Why is this important? We can express mathematical truths in
+     terms of types.

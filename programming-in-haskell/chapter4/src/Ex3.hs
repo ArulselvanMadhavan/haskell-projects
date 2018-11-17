@@ -2,9 +2,7 @@ module Ex3 where
 
 null' :: [a] -> Bool
 null' xs =
-  if length xs == 0
-  then True
-  else False
+  length xs == 0
 
 null'' :: [a] -> Bool
 null'' [] = True
