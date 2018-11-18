@@ -1,0 +1,13 @@
+* Terms, Types and Kinds
+** Kind system
+   - /Terms/ and /Types/ are the fundamental building blocks.
+   - /Terms/ are values. Exist at runtime.
+   - /Types/ are sanity checks.
+   - Fundamental building blocks for type level programming are
+     /types/ and /kinds/
+   - /Kinds/ can be loosely described as "types of types".
+** Kind of "Types"
+   - /TYPE/ is the kind of types. Historically, written as *.
+   - Types that have kind as TYPE are value types.
+** Constraint Kinds
+   - /Constraint/ is the kind of any fully saturated typeclass.
