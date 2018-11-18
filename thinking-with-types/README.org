@@ -2,3 +2,5 @@
 ** Extensions
    - /XTypeInType/
    - /XDataKinds/
+   - /XTypeOperators/
+   - /XTypeFamilies/

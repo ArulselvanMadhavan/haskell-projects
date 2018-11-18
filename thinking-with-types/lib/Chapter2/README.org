@@ -29,4 +29,59 @@
    - Promoted Data Constructors exist in the same namespace as type
      constructors.
 ** Promoted Data constructors as Phantom parameters
-   - 
+   #+BEGIN_SRC haskell
+    data UserType = NormalUser | Admin
+
+    data User = User
+      { userAdminToken :: Maybe (Proxy 'Admin)
+      }
+
+    doSensitiveThings :: Proxy 'Admin -> IO ()
+    doSensitiveThings _ =
+      putStrLn "Doing sensitive things"   
+   #+END_SRC
+** Promotion of Built-In Types
+   - /GHC.TypeLits/ defines the kinds themselves, as well as all of
+     the useful type families for manipulating them.
+*** Promotion of List type
+    #+BEGIN_SRC haskell
+    data [a]
+      = []
+      | a : [a]
+    #+END_SRC
+    - '[] promoted data constructor of kind [A]
+    - '(:) promoted data constructor of kind A -> [A]
+*** Promotion of tuples
+    - '(,) is promoted data constructor.
+** Type-Level Functions
+   - Roughly, Closed Type families are functions at the type-level.
+   - Examples: Div, CmpSymbol
+     #+BEGIN_SRC haskell
+      {-# LANGUAGE DataKinds      #-}
+      {-# LANGUAGE KindSignatures #-}
+      {-# LANGUAGE TypeFamilies   #-}
+      module TypelevelFamily where
+
+        -- Term level function
+      or :: Prelude.Bool -> Prelude.Bool -> Prelude.Bool
+      or Prelude.True _  = Prelude.True
+      or Prelude.False y = y
+
+      type family Or (x :: Prelude.Bool) (y :: Prelude.Bool) :: Prelude.Bool where
+        Or 'True y = 'True
+        Or 'False y = y     
+     #+END_SRC
+*** Type Families vs Functions
+    - Type families can't be curried.
+    - All parameters must be specified simultaneously.
+*** Interesting Signatures
+    #+BEGIN_SRC haskell
+    type family Foo (x::Bool) (y::Bool) :: Bool
+    type family Bar x y :: Bool -> Bool -> Bool    
+    #+END_SRC
+    #+BEGIN_SRC haskell
+    > :k Foo
+    Foo :: Bool -> Bool -> Bool
+    > :k Bar
+    Bar :: * -> * -> Bool -> Bool -> Bool    
+    #+END_SRC

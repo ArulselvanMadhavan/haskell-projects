@@ -1,6 +1,7 @@
 {-# LANGUAGE DataKinds #-}
-module Playground where
+module Chapter2.Playground where
 import           Data.Proxy
+import           GHC.TypeLits
 
 data Bool
   = True
