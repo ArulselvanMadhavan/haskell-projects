@@ -11,3 +11,22 @@
    - Types that have kind as TYPE are value types.
 ** Constraint Kinds
    - /Constraint/ is the kind of any fully saturated typeclass.
+** Data Kinds
+   - /XDataKinds/ - gives us access to kinds other than TYPE,
+     CONSTRAINT and their arrow derivatives.
+     #+BEGIN_SRC haskell
+      data Bool
+        = True
+        | False
+        deriving (Eq, Show)
+
+      {-
+      kind Bool
+        = 'True   -- Promoted Data Constructor
+        | 'False  -- Promoted Data Constructor
+      -}     
+     #+END_SRC
+   - Promoted Data Constructors exist in the same namespace as type
+     constructors.
+** Promoted Data constructors as Phantom parameters
+   - 
