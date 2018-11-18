@@ -31,3 +31,14 @@
    #+END_SRC
    - Why is this important? We can express mathematical truths in
      terms of types.
+   - Function types are encoded as exponentials.
+   - Addition, Multiplication and Exponentials are easy.
+   - Subtraction - Types with some values removed.
+   - Division of a type - Will enable some values defined be equally.
+   - Differentiation - Possible. 
+** Curry Howard Isomorphism
+   - Statement in logic is equivalent to some computer program.
+** Canonical Representations
+   - Sum of products
+   - All additions must be represented via Either
+   - All multiplications must be represented via (,)

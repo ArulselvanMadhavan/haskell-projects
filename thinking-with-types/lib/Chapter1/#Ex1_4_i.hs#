@@ -1,0 +1,9 @@
+module Chapter1.Ex1_4_i where
+
+sample :: (b -> a) -> (c -> a) -> Either b c -> a
+sample ba _ (Left b)  = ba b
+sample _ ca (Right c) = ca c
+
+sample' :: Either b c -> (b -> a) -> (c -> a) -> a
+sample' (Left b) ba _  = ba b
+sample' (Right c) _ ca = ca c
