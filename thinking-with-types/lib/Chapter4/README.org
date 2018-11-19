@@ -1,0 +1,21 @@
+* Working with Types
+** Type Scoping
+   - Haskell uses a generalization of the Hindley-Milner type system.
+** Type Applications
+** Ambiguous Types and Non-Injectivity
+   #+BEGIN_SRC haskell
+   typeRep :: Typeable a => Proxy a -> TypeRep
+   #+END_SRC
+   - Data.Typeable provides a mechanism for getting information about
+     types at runtime.
+   - Ambiguous type variables are ones that don't occur to the right
+     of the fat arrow(=>).
+   - Haskell never correctly infer the type of these variables.
+   - Ambiguous type variable example
+     #+BEGIN_SRC haskell
+     typeName :: forall a. Typeable a => String
+     typeName = show . typeRep $ Proxy @a
+     #+END_SRC
+   - Ambiguous types are very useful for type-level programming.
+   - 
+   

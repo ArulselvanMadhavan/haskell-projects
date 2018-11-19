@@ -4,3 +4,7 @@
    - /XDataKinds/
    - /XTypeOperators/
    - /XTypeFamilies/
+   - /XScopedTypeVariables/ - Introduces /forall/ and type variables
+     with scopes.
+   - /XTypeApplications/ - Allows us to directly apply types to expressions.
+   - /XAllowAmbiguousTypes/
