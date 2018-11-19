@@ -1,0 +1,23 @@
+* Constraints and GADTs
+** Constraints
+   - Reserved for things that appear on the left side of the (=>).
+   - Fully Saturated typeclasses
+   - Tuples of other constraints.
+   - Type Equalities (Int ~ a)
+** Type Equalities
+   - Form an equivalence relation.
+   - /Reflexivity/ - a type is always equal to itself: a ~ a
+   - /Symmetry/ - a ~ b holds if and only if b ~ a
+   - /transitivity/ - a ~ b and b ~ c implies a ~ c
+** GADTs
+   - /XGADTs/ allows explicit type signatures to be written for data
+     constructors.
+   - GADTs are powerful way for packing constraints inside data constructors.
+   - GADTs allows us to build inductive type-level structures out of term-data.
+** HLists
+   #+BEGIN_SRC haskell
+   data HList (ts : [Type]) where
+     HNil :: HList '[]
+     (:#) :: t -> HList ts -> HList (t ': ts)
+   infixr 5 :#
+   #+END_SRC

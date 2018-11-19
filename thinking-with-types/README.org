@@ -8,3 +8,4 @@
      with scopes.
    - /XTypeApplications/ - Allows us to directly apply types to expressions.
    - /XAllowAmbiguousTypes/
+   - /XGADTs/ -Type Equalities among other things.
