@@ -1,0 +1,19 @@
+* Variance
+** Covariant
+** Contravariant
+   #+BEGIN_SRC haskell
+   class Contravariant f where
+     contramap :: (a -> b) -> f b -> f a
+   #+END_SRC
+** Invariant
+   - Invariant map allows you to map a to b if and only if a and b are
+     isomorphic.
+   #+BEGIN_SRC haskell
+   class Invariant f where
+     invmap :: (a -> b) -> (b -> a) -> f a -> f b
+   #+END_SRC
+** Bifunctor
+   - A type that is covariant in both arguments like Either and (,)
+** Profunctor
+   - A type that is contravariant in first argument but covariant in
+     second argument is called profunctor.
