@@ -1,4 +1,11 @@
 * Efforts to learn Haskell
+
+* Tips and Tricks
+  - To clear cabal cache - delete ~/.cabal/store
+  - In Arch Linux always build with 
+    #+BEGIN_SRC bash
+    cabal new-build --with-compiler=<path_to_ghc_pristine>
+    #+END_SRC
 * Resources
 ** Cabal
    - [[https://haskell-at-work.com/episodes/2018-05-13-introduction-to-cabal.html][Introduction to Cabal]]

@@ -1,0 +1,23 @@
+cabal-version: >=1.10
+name: practical-introduction-to-recursion-schemes
+version: 0.1.0.0
+license: GPL-3
+license-file: LICENSE
+maintainer: arulselvan1234@gmail.com
+author: Arulselvan Madhavan
+synopsis: Learning Recursion schemes
+category: Development
+build-type: Simple
+extra-source-files:
+    ChangeLog.md
+    README.org
+
+library
+    exposed-modules:
+        Playground
+    hs-source-dirs: src
+    default-language: Haskell2010
+    build-depends:
+        base >=4.11 && <4.12,
+        data-ordlist >=0.4.7.0,
+        recursion-schemes >=5.0.3

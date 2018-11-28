@@ -1,0 +1,55 @@
+Following the instructions in [[https://jtobin.io/practical-recursion-schemes][here]]
+* Fix Point type
+  - Found in Data.Functor.Foldable
+  #+BEGIN_SRC haskell
+  newtype Fix f = Fix (f (Fix f))
+
+  fix :: f (Fix f) -> Fix f
+  fix = Fix
+
+  unfix :: Fix f -> f (Fix f)
+  unfix (Fix f) = f
+  #+END_SRC
+  - For a given value, you can think of fix adds one level of
+    recursion to it. /unfix/ removes one level of recursion.
+  - This allows you to write recursive types and wrap it in /Fix/ and
+    hijack the recursion it provides automatically.
+** Internal Plumbing
+   - Pattern Functor(Types with parameterized recursive substructure)
+     when wrapped in /Fix/ types get recursion schemes for free.
+   - ~Foldable~ and ~UnFoldable~ are used to tease apart the recursive
+     structure of ~Fix~
+   - Foldable corresponds to unfix
+   - UnFoldable corresponds to fix
+     #+BEGIN_SRC haskell
+     project :: Foldable t => t -> Base t t
+     embed :: Unfoldable t => Base t t -> t
+     #+END_SRC
+* Base and Basic Type Families
+  - Type families are type level functions.
+    #+BEGIN_SRC haskell
+    type family Base t :: * -> *
+    #+END_SRC
+  - Instance for ~Fix~
+    #+BEGIN_SRC haskell
+    type instance Base (Fix f) = f
+    #+END_SRC
+* Recursion Schemes
+  - Catamorphisms
+  - Anamorphisms
+  - Hylomorphisms (ana followed by cata)
+  - Paramorphisms (generalized folds with access to the input argument
+    corresponding to the most recent state of the computation)
+** Catamorphisms
+   #+BEGIN_SRC haskell
+   cata :: Foldable t => (Base t a -> a) -> t -> a
+   #+END_SRC
+   - ~Base t a -> a~ is the algebra
+   - ~t~ is the recursive datatype.
+   - Example
+     #+BEGIN_SRC haskell
+     natsum :: Fix NatF -> Int
+     natsum = cata $ \case
+       ZeroF     -> 0
+       SuccF n -> n +1
+     #+END_SRC

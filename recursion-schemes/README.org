@@ -1,0 +1,3 @@
+* Attempts to learn Recursion schemes
+** References
+   1. [[https://github.com/passy/awesome-recursion-schemes][Awesome Recursion Schemes]]
