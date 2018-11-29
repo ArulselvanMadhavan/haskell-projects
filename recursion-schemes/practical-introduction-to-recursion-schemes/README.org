@@ -53,3 +53,27 @@ Following the instructions in [[https://jtobin.io/practical-recursion-schemes][h
        ZeroF     -> 0
        SuccF n -> n +1
      #+END_SRC
+
+Following the blog [[https://blog.sumtypeofway.com/an-introduction-to-recursion-schemes/][SumTypeOfWay part 1]]
+* Fixed Points
+** Y combinator
+   #+BEGIN_SRC haskell
+   y f = f (f (f (f ...)))
+   #+END_SRC
+   - y(f) represents the result of applying the f repeatedly.
+   - Y-combinator in the type-level
+     #+BEGIN_SRC haskell
+     type Y t = t (t (t (t ...)))
+     #+END_SRC
+   - This general concept is known as "fixed-point"
+   - y(f) is the fixed of the f function.
+   - Y F is the fixed point of the F functor.
+** Fix Point Functor
+   #+BEGIN_SRC haskell
+   newtype Term f = In { out :: f (Term f) }
+   #+END_SRC
+   - This style of defining recursive types using fixed points of
+     functors is called /codata/
+   - 
+* Follow up reading
+  - /data/ vs /codata/
