@@ -74,6 +74,24 @@ Following the blog [[https://blog.sumtypeofway.com/an-introduction-to-recursion-
    #+END_SRC
    - This style of defining recursive types using fixed points of
      functors is called /codata/
-   - 
+** Algebras
+   #+BEGIN_SRC haskell
+   Functor f => (f a -> a)
+   #+END_SRC
+   - Laws
+       #+BEGIN_SRC 
+       cata In = id
+       #+END_SRC
+     - The simplest algebra is the fixed of a functor i.e In
+     - Cata can fuse
+       #+BEGIN_SRC haskell
+       given alg :: f a -> a
+       and func :: f a -> a -- Another alg
+       cata (alg >>> fmap func) => (cata alg) >>> func
+       #+END_SRC
+     - Cata can compose
+       #+BEGIN_SRC haskell
+       cata (f >>> In) >>> cata g = cata (f >>> g)
+       #+END_SRC
 * Follow up reading
   - /data/ vs /codata/
