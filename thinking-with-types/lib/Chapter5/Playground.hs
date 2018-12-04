@@ -11,7 +11,7 @@ five_ :: (a ~ Int) => a
 five_ = 5
 
 -- GADT syntax
-data Expr a where
+data Expr a where -- turns on GADT syntax
   LitInt :: Int -> Expr Int
   LitBool :: Bool -> Expr Bool
   Add :: Expr Int -> Expr Int -> Expr Int

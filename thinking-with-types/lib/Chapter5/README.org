@@ -12,8 +12,13 @@
 ** GADTs
    - /XGADTs/ allows explicit type signatures to be written for data
      constructors.
+   - GADTs allow us to specify a data constructor's type. We can use
+     them to constrain a type variable in certain circumstances.
    - GADTs are powerful way for packing constraints inside data constructors.
    - GADTs allows us to build inductive type-level structures out of term-data.
+   - GADTs are syntactic sugar over type equalities.
+   - Used for building inductive type-level structures out of
+     term-level data.
 ** HLists
    #+BEGIN_SRC haskell
    data HList (ts : [Type]) where
