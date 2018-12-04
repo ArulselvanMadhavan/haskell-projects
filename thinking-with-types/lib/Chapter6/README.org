@@ -1,0 +1,20 @@
+* Rank-N Types
+  - Why?
+    - Haskell's default notion of polymorphism isn't polymorphic enough.
+  - Rank-N Types makes polymorphism first-class.
+    - Allows us to introduce polymorphism anywhere a type is allowed.
+  - Higher-rank polymorphism
+    - Rank of a function is the depth of its polymorphism.
+    - Type inference is undecidable.
+    - Any function with a rank greater than 1 is called higher-rank or rank-n
+    - Intuition behind higher-rank types is that they are functions
+      which take callbacks.
+** Continuation Monad
+   - Types a and forall r. (a -> r) -> r are isomorphic.
+   - Continuation Passing Style(CPS) - forall r. (a -> r) -> r
+   - Having a value is as good as having a function that calls a
+     callback with that value.
+   - Isomorphisms are transitive.
+     - Identity a ≃ a
+     - a ≃ forall r. (a -> r) -> r
+     - Identity a ≃ forall r. (a -> r) -> r
