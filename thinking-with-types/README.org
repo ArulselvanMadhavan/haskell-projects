@@ -1,4 +1,4 @@
-* Thinking with Types
+a* Thinking with Types
 ** Extensions
    - /XTypeInType/
    - /XDataKinds/
@@ -9,3 +9,4 @@
    - /XTypeApplications/ - Allows us to directly apply types to expressions.
    - /XAllowAmbiguousTypes/
    - /XGADTs/ -Type Equalities among other things.
+   - /XPolyKinds/ - Allows us to be polymorphic over constraints.
