@@ -1,3 +1,7 @@
 * Existential Types
-** Existential Types and Eliminators
+
+-----
+I took the notes as comments in the Playground.hs file. Refer that for notes.
+
+
    
