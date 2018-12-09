@@ -116,3 +116,42 @@ instance Applicative (ST a) where
 
 instance Monad (ST s) where
   ST a >>= f = seq a $ f a
+
+newtype STRef s a = STRef { unSTRef :: IORef a } -- s acts as a label irrevocably knotting a STRef with the ST context that created it.
+
+newSTRef :: a -> ST s (STRef s a)
+newSTRef = pure . STRef . unsafePerformIO . newIORef
+
+readSTRef :: STRef s a -> ST s a
+readSTRef = pure . unsafePerformIO . readIORef . unSTRef
+
+writeSTRef :: STRef s a -> a -> ST s ()
+writeSTRef str = pure . unsafePerformIO . writeIORef (unSTRef str)
+
+modifySTRef :: STRef s a -> (a -> a) -> ST s ()
+modifySTRef ref f = do
+  a <- readSTRef ref
+  writeSTRef ref $ f a
+
+-- ST trick used.
+runST :: (forall s. ST s a)  -> a
+runST = unsafeRunST
+
+safeExample :: ST s String
+safeExample = do
+  ref <- newSTRef "hello"
+  modifySTRef ref (++ "world")
+  readSTRef ref
+
+-- runST' :: (forall s. ST s (STRef s Bool)) -> STRef s Bool
+
+-- s is a rigid skolem type variable.
+-- Rigid variables are those that are constrainted by a type signature written by a programmer.
+-- Rigid variables are not allowed to be type inferred.
+-- Skolem is any existential type.
+-- Phantom variable s in ST and STRef is to introduce a rigid skolem.
+
+
+--Uses
+-- Tag external FFI variables.
+-- Used to implement monadic regions which have more or fewer effect capabilities.
