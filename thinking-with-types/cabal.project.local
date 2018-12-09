@@ -1,6 +1,6 @@
 
 package *
-  ghc-location: ghc
+  ghc-location: /usr/share/ghc-pristine/bin/ghc
 
 program-locations
-  ghc-location: ghc
+  ghc-location: /usr/share/ghc-pristine/bin/ghc

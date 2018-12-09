@@ -1,1 +1,77 @@
 * Roles
+** Newtype
+   - newtype have representational equality with the underlying type.
+   - has profound implications on performance.
+     - Ability to reinterpret a value of one type as value of another.
+     - O(0) time.
+     - /coerce/ allows you to reinterpret value of one type as another
+       in O(0) time.
+       #+BEGIN_SRC haskell
+       coerce :: Coercible a b => a -> b
+       coerce = undefined
+       #+END_SRC
+     - /Coercible a b/ is a proof that types a and b do have the same
+       runtime representation.
+   - A newtype is always coercible with its underlying type.
+   - /Coercible/ is a magic constraint
+   - Compiler will write instances of it for you. You can't write your own.
+   - fmap <newtypeWithFunctor> can be replaced with coerce.
+** Coercible
+   - Coercible corresponds to representational equality.
+     - /Reflexivity/ - Coercible a a is true for any type a
+     - /Symmetry/ - Coercible a b implies Coercible b a
+     - /Transitivity/ - Coercible a b and Coercible b c we have
+       Coercible a c
+** Representationally equal types are not always interchangeable.
+   - Sum Int and Product Int are newtypes over Int.
+   - They are interchangeable based on the transitivity property of Coercible.
+   - Not all representationally equal types are interchangeable.
+   - Example: Data.Map.Map
+     - Represented as balanced tree
+     - Ordered via a ~Ord k~ instance
+     - ~Ord k~ instance is required in order to know where to put the
+       /v/ in the map.
+     - Layout of Map k v is entirely dependent on the Ord k instance
+       it was built with.
+       #+BEGIN_SRC haskell
+newtype Reverse a = Reverse
+  { getReverse :: a
+  } deriving (Eq, Show)
+
+instance Ord a => Ord (Reverse a) where
+  compare (Reverse a) (Reverse b) = compare b a       
+       #+END_SRC
+     - Reverse type can't be safely coerced with the 'k' of Map k v
+     - Since the Ord k is not equal to Ord (Reverse k)
+     - It can still safely coerce with Map k (Reverse v)
+** Roles
+   - Type system ensures terms are used correctly.
+   - Kind system ensured types are logical.
+   - Role system ensures coercions are safe.
+   - Every type parameter of a type constructor is assigned a role.
+   - Roles describe how a type's representational equality is related
+     to its parameters' coercion-safety
+     - /nominal/ - everyday notion of type-equality in Haskell. a ~ b
+     - /representational/ - types a and b are representationally equal
+       if and only if it's safe to reinterpret the memory of a as b.
+     - /phantom/ - two types are always phantom-ly equal to one another.
+   - In the type /Sum a/, a's role is representational.
+   - Phantom role example
+     #+BEGIN_SRC haskell
+     data Proxy a = Proxy
+     #+END_SRC
+     - Coercible (Proxy a) (Proxy b) is always true, since a doesn't
+       actually exist in runtime.
+   - Ordering in roles
+     - /phantom/ can be coerced in more situations.
+     - /representational/ can be coerced more than /nominal/
+   - Upgrading from a weaker role is called strengthening.
+   - Roles are automatically inferred by the compiler.
+   - Role inference:
+     - All type parameters are assumed to be at role /phantom/
+     - Type constructor (->) has two representational roles;
+       - Any type parameter applied to a (->) gets upgraded to /representational/
+       - Data constructors count as applying (->)
+     - Type constructor (~) has two nominal roles;
+       - Any type parameter applied to a (~) gets upgraded to /nominal/
+       - GADTs and type families count as applying (~)

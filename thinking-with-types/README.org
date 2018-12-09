@@ -1,4 +1,4 @@
-a* Thinking with Types
+* Thinking with Types
 ** Extensions
    - /XTypeInType/
    - /XDataKinds/
@@ -10,3 +10,4 @@ a* Thinking with Types
    - /XAllowAmbiguousTypes/
    - /XGADTs/ -Type Equalities among other things.
    - /XPolyKinds/ - Allows us to be polymorphic over constraints.
+   - /XRoleAnnotations/ - 
