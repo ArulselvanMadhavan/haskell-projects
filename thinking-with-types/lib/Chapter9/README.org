@@ -1,0 +1,6 @@
+* Associated Type Families
+  - Associated with a type class and provide a convenient way to
+    bundle term-level code with computed types.
+  - Type classes are our means of providing ad-hoc polymorphism.
+    Associated type families allow us to compute ad-hoc types.
+  - 
