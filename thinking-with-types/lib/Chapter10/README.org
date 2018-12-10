@@ -1,0 +1,13 @@
+* First Class Families
+  - Type families were thought of as something that couldn't be first class.
+    - Since they can't be partially applied.
+  - Li-yao Xia has relaxed this limitation by giving us tools to work
+    around the limitations of not having first class type families.
+    - /Defunctionalization/ - Process of replacing an instantiation of
+      a polymorphic function with a specialized label instead.
+  - Kind Synonym - ~Exp a~
+    #+BEGIN_SRC haskell
+    type Exp a = a -> Type
+    #+END_SRC
+  - FCFs - A defunctionalized symbol whose type corresponds to the
+    desired type-level function.

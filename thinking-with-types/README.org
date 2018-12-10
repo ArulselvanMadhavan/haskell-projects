@@ -10,4 +10,7 @@
    - /XAllowAmbiguousTypes/
    - /XGADTs/ -Type Equalities among other things.
    - /XPolyKinds/ - Allows us to be polymorphic over constraints.
-   - /XRoleAnnotations/ - 
+   - /XRoleAnnotations/ - Allow you to specify role for type parameters
+   - /XFunctionalDependencies/ -
+   - /XMultiParamTypeClasses/ -
+   - /XUndecidableInstances/
