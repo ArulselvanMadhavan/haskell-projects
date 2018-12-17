@@ -11,3 +11,11 @@
     #+END_SRC
   - FCFs - A defunctionalized symbol whose type corresponds to the
     desired type-level function.
+** FCFs form monad at the type-level
+   - (<=<) at the type-level acts like regular function composition (.)
+   - (=<<) behaves like function application ($)
+   - /first-class-families/ package provides most of Prelude as FCFs
+   - There is no type-level /Eq/ at the type-level.
+     #+BEGIN_SRC haskell
+     data TyEq :: a -> b -> Exp Bool
+     #+END_SRC
