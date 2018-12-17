@@ -21,7 +21,8 @@ library
     build-depends:
                   base >=4.11 && <4.12,
                   transformers,
-                  containers >= 0.6.0.1
+                  containers >= 0.6.0.1,
+                  first-class-families >= 0.1.0.0
 
 executable thinking-with-types
     main-is: Main.hs

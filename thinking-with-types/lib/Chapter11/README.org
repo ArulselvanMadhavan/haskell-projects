@@ -1,0 +1,27 @@
+* Chapter 11 - Extensible Data
+** Introduction   
+   - How to build an extensible record type.
+   - how to generalize /Either/ type to support an arbitrary number of
+     potential types.
+   - Canonical representation of types - /Sum of products/
+     - Sums correspond to /Either a b/
+     - Products correspond to (a, b)
+   - There is an isomorphism between a type and its canonical
+     representation (using sum of products)
+   - But this isn't an efficient encoding.
+   - Use type system to encode the extra information about extensible
+     sum/product types.
+** Open Sums
+   - Open sum is a container of a data whose type isn't known statically.
+   - There are no guarantees that we know which types it might be,
+     since the list of types might be polymorphic.
+   - Existential types are ones whose type has been forgotten by the
+     type system.
+   - We can use it store any type inside of our open sum container.
+     #+BEGIN_SRC haskell
+     data OpenSum (f :: k -> Type)(ts :: [k]) where
+       UnsafeOpenSum :: Int -> f t -> OpenSum f ts     
+     #+END_SRC
+   - It's a common pattern in type-level programming to label raw data
+     constructors as unsafe and provide /safe/ smart constructors.
+   - 
