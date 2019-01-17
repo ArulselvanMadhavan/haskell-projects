@@ -19,14 +19,15 @@ library
         Chapter1.Ex1_4_i
     default-language: Haskell2010
     build-depends:
-                  base >=4.11 && <4.12,
-                  transformers,
-                  containers >= 0.6.0.1,
-                  first-class-families >= 0.1.0.0
+        base >=4.11 && <4.12,
+        transformers -any,
+        containers >=0.6.0.1,
+        first-class-families >=0.1.0.0,
+        vector -any
 
 executable thinking-with-types
     main-is: Main.hs
     hs-source-dirs: src
     default-language: Haskell2010
     build-depends:
-                  base >=4.11 && <4.12
+        base >=4.11 && <4.12

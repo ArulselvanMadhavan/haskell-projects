@@ -1,0 +1,16 @@
+* Parallel and Concurrent Programming in Haskell
+
+** What to expect
+   - Express parallelism in Haskell with the Eval monad and evaluation
+     strategies.
+   - Parallelize ordinary Haskell code with the Par monad
+   - Parallel array based computations using the Repa library.
+   - Accelerate library to run computations on GPU
+   - Work with Basic interfaces for writing concurrent code.
+   - Build trees of threads for larger and more complex programs.
+   - Build High speed concurrent network servers.
+   - Write distributed programs that run on multiple machines in a network.
+
+** From Simon Marlow
+   - Concurrency is built into the core of the system.
+   - GHC has solid and lightning fast concurrency support.
