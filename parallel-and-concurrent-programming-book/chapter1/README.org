@@ -1,1 +1,45 @@
 * Introduction
+** Parallelism vs Concurrency
+*** Parallelism
+    - Uses multiplicity of computational hardware to perform a
+      computation more quickly.
+*** Concurrency
+    - Program structuring technique in which there are multiple
+      /threads of control/
+    - Conceptually the threads of control execute at the same time.
+    - It's an implementation details whether they actually do or not.
+    - Can run on single processor through interleaved execution or on
+      multiple physical processors.
+*** Differences
+    - Parallel Prog. - concerned with efficiency
+    - Concurrent prog - structuring a program that needs to interact
+      with multiple independent external agents.
+    - Concurrency allows such programs to be modular
+      - Thread that interacts with the user
+      - Thread that interacts with the DB
+    - Concurrent programs are non-deterministic.
+    - Parallel programs can use deterministic programming, if possible.
+    - Deterministic parallel programming is the best of both worlds.
+    - Concurrency sacrifices determinism.
+    - It's entirely reasonable to mix parallelism with concurrency but
+      it's less than ideal to implement parallel programming using concurrency.
+* Parallel Haskell
+*** Why automatic parallelism is not possible(yet) in a purely functional language?
+    - To make the program go faster, we have to gain more from
+      parallelism than we lose due to the overhead of adding it.
+    - Compile time analysis cannot make good judgments in this area.
+*** Parallel programming in haskell
+    - Deterministic
+    - High level and declarative
+    - Requires Fewer operational details -> Likely to work on wide
+      range of hardwares.
+    - Uses highly tuned technology in the runtime system(Parallel Garbage collection)
+    - Lot of the execution details are hidden -> Performance problems
+      are hard to understand.
+*** Partitioning
+    - Dividing up the problem into pieces that can be computed in parallel.
+    - Granularity
+      - Too small -> Too many tasks to manage -> too much time spent
+        in the overhead of managing tasks.
+      - Too large -> Won't be efficiently using parallel processors.
+    - Data Dependencies

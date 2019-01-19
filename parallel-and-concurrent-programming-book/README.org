@@ -14,3 +14,6 @@
 ** From Simon Marlow
    - Concurrency is built into the core of the system.
    - GHC has solid and lightning fast concurrency support.
+
+** Tools
+   - /Threadscope/ - Arch Linux users can install it from AUR.
