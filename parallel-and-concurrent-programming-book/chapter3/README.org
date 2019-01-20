@@ -13,3 +13,29 @@
     using :: a -> Strategy a -> a
     x `using` s = runEval (s x)
     #+END_SRC
+* Parameterized Strategies
+  - /parPair/ Strategy embodies fixed policy.
+  - WHNF and NF are two ends in the evaluation hierarchy.
+  - Parameterized Strategies
+    #+BEGIN_SRC haskell
+    evalPair :: Strategy a -> Strategy b -> Strategy (a, b)
+    evalPair sa sb (a, b) = do
+      a' <- sa a
+      b' <- sb b
+      return (a', b')
+    #+END_SRC
+    #+BEGIN_SRC haskell
+    rdeepseq :: NFData a => Strategy a
+    rdeepseq x = seq (force x)
+    #+END_SRC
+    #+BEGIN_SRC haskell
+    rparWith :: Strategy a -> Strategy a
+    #+END_SRC
+    #+BEGIN_SRC haskell
+    parPair :: Strategy a -> Strategy b -> Strategy (a, b)
+    parPair sa sb = evalPair (rparWith sa) (rparWith sb)
+    #+END_SRC
+    #+BEGIN_SRC haskell
+    r0 :: Strategy a
+    r0 x = return x
+    #+END_SRC
