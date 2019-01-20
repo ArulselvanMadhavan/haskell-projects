@@ -1,0 +1,15 @@
+* Evaluation Strategies
+  - Strategy is a function in the Eval monad.
+    #+BEGIN_SRC haskell
+    type Strategy a = a -> Eval a
+    #+END_SRC
+  - Idea: Strategy takes a data structure as input, traverses the
+    structure creating parallelism with /rpar/ and /rseq/ and then
+    returns the original value.
+    #+BEGIN_SRC haskell
+    parPair :: Strategy (a, b)
+    #+END_SRC
+    #+BEGIN_SRC haskell
+    using :: a -> Strategy a -> a
+    x `using` s = runEval (s x)
+    #+END_SRC
