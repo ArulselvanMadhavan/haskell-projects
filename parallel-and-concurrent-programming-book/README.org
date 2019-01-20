@@ -17,3 +17,10 @@
 
 ** Tools
    - /Threadscope/ - Arch Linux users can install it from AUR.
+
+** GHC Flags
+   - /threaded/ - Use the threaded runtime
+   - /O2/ - Use level 2 optimizations
+   - /rtsopts/ - Allows Runtime system to tweaked by command line arguments.
+   - /eventlog/ - Enables profiling of runtime systems.
+

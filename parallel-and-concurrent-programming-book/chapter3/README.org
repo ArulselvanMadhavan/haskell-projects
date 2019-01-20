@@ -39,3 +39,54 @@
     r0 :: Strategy a
     r0 x = return x
     #+END_SRC
+* Strategy for evaluating a List in Parallel
+  - /parMap/
+    - map
+    - Evaluating the elements of a list in parallel.
+      #+BEGIN_SRC haskell
+      parMap :: (a -> b) -> [a] -> [b]
+      parMap f xs = map f xs `using` parList rseq
+      #+END_SRC
+      #+BEGIN_SRC haskell
+      evalList :: Strategy a -> Strategy [a]
+      evalList strat [] = return []
+      evalList strat (x:xs) = do
+        x' <- strat x
+        xs' <- evalList strat xs
+        return (x' : xs')
+      #+END_SRC
+      #+BEGIN_SRC haskell
+      parList :: Strategy a -> Strategy [a]
+      parList strat = evalList (rparWith strat)
+      #+END_SRC
+* KMeans
+  - Coordinates
+    #+BEGIN_SRC haskell
+    data Point = Point {-#UNPACK#-} !Double {-#UNPACK#-}!Double
+    #+END_SRC
+    - /BangPattern/ - strict evaluation
+    - /UNPACK/ Pragma - No Boxed types
+  - Cluster
+    #+BEGIN_SRC haskell
+      data Cluster = 
+        Cluster { clId :: {-#UNPACK#-} !Int         -- Cluster Id
+                , clCent :: {-#UNPACK#-} !Point     -- Center
+                }
+    #+END_SRC
+  - PointSum
+    #+BEGIN_SRC haskell
+      data PointSum = PointSum !Int !Double !Double
+    #+END_SRC
+    #+BEGIN_SRC haskell
+      addToPointSum :: PointSum -> Point -> PointSum
+      addToPointSum (PointSum count xs ys) (Point x y) =
+        PointSum (count + 1) (xs + x) (ys + y)
+    #+END_SRC
+    #+BEGIN_SRC haskell
+      pointSumToCluster :: Int -> PointSum -> Cluster
+      pointSumToCluster i (PointSum count xs ys) = 
+        Cluster { clId = i
+        , clCent = Point (xs / fromIntegral count) (ys / fromIntegral count)
+        }        
+    #+END_SRC
+    
