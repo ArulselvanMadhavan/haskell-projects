@@ -89,4 +89,28 @@
         , clCent = Point (xs / fromIntegral count) (ys / fromIntegral count)
         }        
     #+END_SRC
-    
+* Parallelizing K-Means
+  - Split a list into chunks
+    #+BEGIN_SRC haskell
+    split :: Int -> [a] -> [[a]]
+    split numChunks xs = chunk (length xs `quot` numChunks) xs
+
+    chunk :: Int -> [a] -> [[a]]
+    chunk n [] = []
+    chunk n xs = as : chunk n bs
+      where (as, bs) = splitAt n xs
+
+    addPointSums :: PointSum -> PointSum -> PointSum
+    addPointSums (PointSum c1 x1 y1) (PointSum c2 x2 y2) =
+      PointSum (c1 + c2) (x1 + x2) (y1 + y2)
+
+    combine :: Vector PointSum -> Vector PointSum -> Vector PointSum
+    combine = Vector.zipWith addPointSums
+
+    parSteps_strat :: Int -> [Cluster] -> [[Point]] -> [Cluster]
+    parSteps_strat nClusters clusters pointss
+      = makeNewClusters $
+          foldr1 combine $
+            (map (assign nclusters clusters) pointss
+              `using` parList rseq)
+    #+END_SRC
