@@ -38,3 +38,4 @@ checkListWithMutableArray xs =
         return a)
   where
     n = length xs
+
