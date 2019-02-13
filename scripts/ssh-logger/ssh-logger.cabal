@@ -63,6 +63,8 @@ executable ssh-logger
                      , text ^>=1.2.3.1
                      , mtl ^>=2.2.2
                      , MissingH ^>=1.4.1.0
+                     , aeson ^>=1.4.2.0
+                     , bytestring ^>=0.10.8.2
   -- Directories containing source files.
   hs-source-dirs:      src
 
