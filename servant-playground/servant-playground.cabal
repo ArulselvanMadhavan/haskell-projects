@@ -1,0 +1,33 @@
+cabal-version: 2.4
+name: servant-playground
+version: 0.1.0.0
+license: GPL-3.0-only
+license-file: LICENSE
+maintainer: arulselvan1234@gmail.com
+author: Arulselvan Madhavan
+homepage: https://github.com/ArulselvanMadhavan/haskell-projects/servant-playground
+synopsis: Learning Servant
+category: Learning
+extra-source-files:
+    CHANGELOG.md
+
+library
+    hs-source-dirs: src
+    default-language: Haskell2010
+    exposed-modules: ApiType
+    build-depends:
+        base ^>=4.12.0.0,
+        servant -any,
+        text -any,
+        time -any
+
+executable servant-playground
+    main-is: Main.hs
+    hs-source-dirs: src
+    default-language: Haskell2010
+    build-depends:
+        base ^>=4.12.0.0,
+        servant -any,
+        text -any,
+        servant -any,
+        time -any
