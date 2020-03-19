@@ -1,0 +1,12 @@
+* Optics
+  - Family of tools
+  - Family of inter-composable combinators for building bidirectional
+    data transformations
+** Strengths
+   - Solves data manipulation problems in a composable, performant and
+     concise way
+   - Composition
+   - Seperation of concerns
+   - Concision
+   - Enforcing interface boundaries
+   - Principled and mature ecosystem

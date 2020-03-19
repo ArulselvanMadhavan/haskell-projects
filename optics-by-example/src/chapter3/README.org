@@ -1,0 +1,7 @@
+* Lenses
+** Introduction to Lenses
+   - Seperation of concerns
+     - Selection of data (optics)
+     - Action on data (depends on optics)
+   - Lenses - more constraints - more guarantees - less flexible -
+     fewer lenses
