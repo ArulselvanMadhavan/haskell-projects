@@ -5,3 +5,54 @@
      - Action on data (depends on optics)
    - Lenses - more constraints - more guarantees - less flexible -
      fewer lenses
+** Lens Actions
+   - Lens type
+     #+BEGIN_SRC haskell
+     _1 :: Lens' (a, b) a
+     #+END_SRC
+   - a -> type of the structure
+   - b -> type of the focus
+   - Lens + Action
+     #+BEGIN_SRC haskell
+     view :: Lens' s a -> s -> a
+     #+END_SRC
+     #+BEGIN_SRC haskell
+     view _1 ('a', 'b')
+     #+END_SRC
+** Setting through a lens
+   - set
+   #+BEGIN_SRC haskell
+   set :: Lens' s a -> a -> s -> s
+   #+END_SRC
+   - modify
+   #+BEGIN_SRC haskell
+   over :: Lens' s a -> (a -> a) -> s -> s
+   #+END_SRC
+** Exercises
+*** 1
+    - Structure - (Bool, (Int, String))
+    - Focus - > Int 
+*** 2
+    - Lens (Char, Int) Char
+*** 3
+    - view, set, over
+*** 4
+    - _3 :: Lens (a, b, c) c
+*** 5
+    - over :: Lens' (Boolean, Int) Int -> (Int -> Int) -> (Boolean,
+              Int) -> (Boolean, Int)
+    - _2 :: Lens' (Boolean, Int) Int
+    - (*10) :: Int -> Int
+    - (False, 2) :: (Boolean, Int)
+** Lenses and records
+   - Lens builder
+     #+BEGIN_SRC haskell
+     lens :: (s -> a) -> (s -> b -> t) -> Lens s t a b
+     #+END_SRC
+   - Simple optic: Lens' - Restrictive lens for records
+     #+BEGIN_SRC haskell
+     lens :: (s -> a) -> (s -> a -> s) -> Lens' s a
+     #+END_SRC
+   - Getter function (s -> a)
+   - Setter function (s -> a -> s)
+   - 
